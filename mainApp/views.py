@@ -64,3 +64,102 @@ def logout_view(request):
 
 def react_test(request):
     return render(request, 'liasu/build/index.html')
+
+
+
+
+
+#api for react
+
+from django.http import JsonResponse
+import random
+import string
+from django.core.mail import send_mail
+from django.conf import settings
+
+def authenticate_user(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return JsonResponse({'status': 'success', 'message': 'Login successful'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid credentials'})
+
+
+import random
+import string
+from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.conf import settings
+
+
+def generate_verification_code():
+    """Generate a random 6-digit verification code"""
+    return ''.join(random.choices(string.digits, k=6))
+
+
+def check_id_availability(request):
+    if request.method == 'GET':
+        # Get the ID from the query parameters
+        university_id = request.GET.get('id')
+
+        if not university_id:
+            return JsonResponse({
+                'status': 'error',
+                'message': 'University ID is required'
+            })
+
+        # Basic validation for ID (length check)
+        if len(university_id) > 9:
+            return JsonResponse({
+                'status': 'error',
+                'message': 'University ID cannot exceed 9 characters'
+            })
+
+        # Check if the ID already exists in the database
+        if Student.objects.filter(username=university_id).exists():
+            return JsonResponse({
+                'status': 'error',
+                'message': 'This university ID is already registered'
+            })
+
+        # ID is available, generate verification code
+        verification_code = generate_verification_code()
+
+        # Generate email from the ID based on your Student model's pattern
+        email = f"{university_id}@students.eui.edu.eg"
+
+        # Send verification email
+        try:
+            send_mail(
+                'Verify Your University Account',
+                f'Your verification code is: {verification_code}',
+                settings.DEFAULT_FROM_EMAIL,
+                [email],
+                fail_silently=False,
+            )
+
+            # Return success response with email sent confirmation and the code
+            return JsonResponse({
+                'status': 'success',
+                'message': 'ID is available and verification code sent',
+                'email': email,
+                'code': verification_code  # In production, consider removing this
+            })
+
+        except Exception as e:
+            # Log the error but provide a generic message to the user
+            print(f"Email sending failed: {str(e)}")
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Failed to send verification email',
+                'email': email,
+                'code': verification_code  # Still return the code for testing
+            })
+
+    return JsonResponse({
+        'status': 'error',
+        'message': 'Invalid request method'
+    })

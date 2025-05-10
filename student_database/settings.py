@@ -116,7 +116,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'liasu/build/static',
+    BASE_DIR / 'templates/liasu/build/static',
 ]
 
 # Default primary key field type
