@@ -3,7 +3,7 @@ import Form from './component/form';
 
 function App() {
 
-    let [action, setAction] = useState("signup");
+    let [action, setAction] = useState("login");
     return (
     <div style={{ textAlign: 'center' }}>
       <Form action = {action} />

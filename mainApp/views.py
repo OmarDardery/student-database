@@ -4,6 +4,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
 
 from .forms import StudentRegistrationForm, LoginForm
 from .models import Student
@@ -164,7 +168,7 @@ def validate_and_send_code(request, id):
         'status': 'error',
         'message': 'Invalid request method'
     })
-
+@csrf_exempt
 def validate_code(request):
     university_id = request.GET.get('id')
     submitted_code = request.GET.get('code')
@@ -178,3 +182,21 @@ def validate_code(request):
         return JsonResponse({'status': 'success', 'message': 'Code is valid'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid or expired code'})
+
+
+@csrf_exempt
+def validate_user(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))  # Decode the JSON body
+        university_id = data.get('id')  # Access 'id'
+        password = data.get('password')  # Access 'password'
+
+        user = authenticate(request, username=university_id, password=password)
+
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'status': 'success', 'message': 'Login successful', "authenticated": True})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Invalid credentials', "authenticated": False})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method', "authenticated": False})

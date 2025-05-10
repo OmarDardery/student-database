@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import validateStudentId from './functions/validate_student_id';
-
+import validateUser from './functions/validateUser';
 function Form(props) {
     let [message, setMessage] = useState("");
     let [id, setId] = useState("");
@@ -14,7 +14,13 @@ function Form(props) {
             setMessage( String(response) );
         }
     }
-    function handleSignIn() {
+    async function handleSignIn() {
+        let response = await validateUser(id, password);
+        if(response.authenticated) {
+            window.location.href = "/home";
+        }else{
+            setMessage(response.message);
+        }
     }
     return (<div>
         {message}
