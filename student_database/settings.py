@@ -114,10 +114,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+import os
+from dotenv import load_dotenv
+load_dotenv()  # loads .env file into environment
 
 STATICFILES_DIRS = [
     BASE_DIR / 'templates/liasu/build/static',
 ]
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -129,3 +137,11 @@ AUTH_USER_MODEL = 'mainApp.Student'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'your-smtp-host.com'      # SMTP server, e.g., smtp.gmail.com
+EMAIL_PORT = 587                       # Port for TLS (typically 587)
+EMAIL_USE_TLS = True                   # Use TLS encryption
+EMAIL_HOST_USER = 'your-email@example.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'your-password'      # Your email password
+DEFAULT_FROM_EMAIL = 'your-email@example.com'

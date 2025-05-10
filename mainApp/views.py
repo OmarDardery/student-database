@@ -3,9 +3,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+
 from .forms import StudentRegistrationForm, LoginForm
+from .models import Student
+import os
+from django.core.cache import cache
 
-
+# Generate code
 
 @login_required(login_url='login')
 def home(request):
@@ -15,9 +20,7 @@ def userlogin(request):
     return render(request, 'mainApp/login.html', {'form': LoginForm()})
 
 def index(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    return redirect('login')
+    return render(request, "liasu/build/index.html")
 
 def signup(request):
     return render(request, 'mainApp/signup.html', {'form': StudentRegistrationForm()})
@@ -99,11 +102,11 @@ def generate_verification_code():
     """Generate a random 6-digit verification code"""
     return ''.join(random.choices(string.digits, k=6))
 
-
-def check_id_availability(request):
+@csrf_exempt
+def validate_and_send_code(request, id):
     if request.method == 'GET':
         # Get the ID from the query parameters
-        university_id = request.GET.get('id')
+        university_id = id
 
         if not university_id:
             return JsonResponse({
@@ -127,6 +130,8 @@ def check_id_availability(request):
 
         # ID is available, generate verification code
         verification_code = generate_verification_code()
+        cache_key = f'verification_code_{university_id}'
+        cache.set(cache_key, verification_code, timeout=600)  # 600 seconds = 10 minutes
 
         # Generate email from the ID based on your Student model's pattern
         email = f"{university_id}@students.eui.edu.eg"
@@ -145,8 +150,6 @@ def check_id_availability(request):
             return JsonResponse({
                 'status': 'success',
                 'message': 'ID is available and verification code sent',
-                'email': email,
-                'code': verification_code  # In production, consider removing this
             })
 
         except Exception as e:
@@ -155,11 +158,23 @@ def check_id_availability(request):
             return JsonResponse({
                 'status': 'error',
                 'message': 'Failed to send verification email',
-                'email': email,
-                'code': verification_code  # Still return the code for testing
             })
 
     return JsonResponse({
         'status': 'error',
         'message': 'Invalid request method'
     })
+
+def validate_code(request):
+    university_id = request.GET.get('id')
+    submitted_code = request.GET.get('code')
+
+    cache_key = f'verification_code_{university_id}'
+    stored_code = cache.get(cache_key)
+
+    if stored_code == submitted_code:
+        # Optional: delete the code after successful validation
+        cache.delete(cache_key)
+        return JsonResponse({'status': 'success', 'message': 'Code is valid'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid or expired code'})

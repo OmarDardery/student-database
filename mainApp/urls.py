@@ -10,4 +10,5 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("home", views.home, name="home"),
     path("react", views.react_test, name="react"),
+    path("api/validate/<str:id>/", views.validate_and_send_code, name="validate_student_id"),
 ]
