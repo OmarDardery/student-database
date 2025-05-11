@@ -1,17 +1,20 @@
 import React, {useState} from 'react';
 import validateStudentId from './functions/validate_student_id';
 import validateUser from './functions/validateUser';
+
+
 function Form(props) {
-    let [message, setMessage] = useState("");
     let [id, setId] = useState("");
     let [password, setPassword] = useState("");
     let [confirmPassword, setConfirmPassword] = useState("");
     async function handleSignUp () {
         if(password !== confirmPassword) {
-            alert("Passwords do not match");
+            props.setMessage("Passwords do not match");
+            props.notify();
         }else{
             let response = await validateStudentId(id);
-            setMessage( String(response) );
+            props.setMessage( String(response) );
+            props.notify();
         }
     }
     async function handleSignIn() {
@@ -19,25 +22,25 @@ function Form(props) {
         if(response.authenticated) {
             window.location.href = "/home";
         }else{
-            setMessage(response.message);
+            props.setMessage(response.message);
+            props.notify();
         }
     }
-    return (<div>
-        {message}
-        <div>
+    return (<div className={"form"}>
+        <div className={"form-field"}>
             <label htmlFor="ID">University ID:</label>
             <input type="text" onChange={(e)=>{
                 setId(e.target.value);
             }} value={id} name="ID" />
         </div>
-        <div>
+        <div className={"form-field"}>
             <label htmlFor="ID">Password:</label>
             <input onChange={(e)=>{
                 setPassword(e.target.value);
             }} value={password} type="password" />
         </div>
         {(props.action === "signup") ?
-            <div>
+            <div className={"form-field"}>
                 <label htmlFor="ID">Confirm Password:</label>
                 <input onChange={(e)=>{
                 setConfirmPassword(e.target.value);
@@ -50,7 +53,7 @@ function Form(props) {
             }else {
                 handleSignIn();
             }
-        }}>Submit</button>
+        }} className={"form-submit-button"}>Submit</button>
     </div>);
 }
 
