@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import MEDIA_URL
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -113,13 +115,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
 import os
 from dotenv import load_dotenv
-load_dotenv()  # loads .env file into environment
+load_dotenv()
 
 STATICFILES_DIRS = [
     BASE_DIR / 'templates/liasu/build/static',
+    BASE_DIR / 'templates/home/build/static',
 ]
 CACHES = {
     'default': {
@@ -145,3 +149,4 @@ EMAIL_USE_TLS = True                   # Use TLS encryption
 EMAIL_HOST_USER = 'your-email@example.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'your-password'      # Your email password
 DEFAULT_FROM_EMAIL = 'your-email@example.com'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
