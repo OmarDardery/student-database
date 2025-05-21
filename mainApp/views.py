@@ -43,3 +43,9 @@ def logout_user(request):
         return JsonResponse({"logged_out": "True"})
     else:
         return JsonResponse({"logged_out": "False", "message": "Invalid request method"})
+
+def send_code(request):
+    if request.method == "POST":
+        return JsonResponse({"requestStatus": "True"})
+    else:
+        return JsonResponse({"requestStatus": "False", "message": "invalid request method"})

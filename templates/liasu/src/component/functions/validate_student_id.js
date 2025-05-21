@@ -1,24 +1,26 @@
-const validateStudentId = async (id) => {
+import getCookie from "./getCookie";
+const validateAndSendCode = async (id) => {
   try {
-    const response = await fetch(`/api/validate/${id}/`, {
-      method: 'GET', // GET request
+    const response = await fetch(`/api/send-code`, {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json', // Let the backend know you're sending JSON data
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('student_database_csrftoken'),
       },
+      body:
+        JSON.stringify({
+          id
+        }),
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error();
+      }
     });
-
-    if (!response.ok) {
-      // If HTTP response is not OK (status is not 2xx)
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json(); // Parse JSON response
-    return data.message;
+    return await response.json();
   } catch (error) {
-    // Handle network or other errors
     console.error('Error during validation request:', error.message);
   }
-  return false; // Return false if validation fails or an error occurs
+  return false;
 };
 
-export default validateStudentId;
+export default validateAndSendCode;
