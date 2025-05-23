@@ -46,6 +46,19 @@ def logout_user(request):
 
 def send_code(request):
     if request.method == "POST":
+        request.session["code"] = 123456
         return JsonResponse({"requestStatus": "True"})
+    else:
+        return JsonResponse({"requestStatus": "False", "message": "invalid request method"})
+
+def validate_code(request):
+    if request.method == "POST":
+        if not request.session["code"]:
+            return JsonResponse({"requestStatus": "False", "message": "No code set"})
+        else:
+            if request.POST.get("code") == request.session["code"]:
+                return JsonResponse({"requestStatus": "True"})
+            else:
+                return JsonResponse({"requestStatus": "False", "message": "Invalid code"})
     else:
         return JsonResponse({"requestStatus": "False", "message": "invalid request method"})
