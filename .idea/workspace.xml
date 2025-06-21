@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fd590ac8-761b-456e-a4e5-7a961b63e52d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/MCQ/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/components/headerAndMenu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home/static/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home/static/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/asset-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/css/main.3a91aa1a.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/css/main.3a91aa1a.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.6955bdf4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.6955bdf4.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.6955bdf4.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/student-database.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/student-database.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/req.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student_database/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/student_database/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student_database/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/student_database/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/permenant static/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/src/components/functions/getCookie.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/src/component/signUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/component/signUpForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/src/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/css/index.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Sass File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;OmarDardery&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/OmarDardery/student-database.git&quot;,
+    &quot;accountId&quot;: &quot;28b9aa53-f9f4-4645-9bd5-36e4127e533e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2ylbtx0DnWDAWkzgyFoFYnxbgiE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "git-widget-placeholder": "main",
+    "ignore_missing_gitignore": "true",
+    "last_opened_file_path": "/home/oadardery71/Documents/GitHub/student-database/templates/liasu/permenant static",
+    "list.type.of.created.stylesheet": "Sass",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/snap/pycharm-professional/496/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/liasu/permenant static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/home/static" />
+      <recent name="$PROJECT_DIR$/staticfiles" />
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/templates/components" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="student-database" type="Python.DjangoServer" factoryName="Django server">
+      <module name="student-database" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
+        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fd590ac8-761b-456e-a4e5-7a961b63e52d" name="Changes" comment="" />
+      <created>1750412325397</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750412325397</updated>
+      <workItem from="1750412326422" duration="6464000" />
+      <workItem from="1750449598296" duration="1968000" />
+      <workItem from="1750451580687" duration="213000" />
+      <workItem from="1750452206666" duration="636000" />
+      <workItem from="1750490279538" duration="29748000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

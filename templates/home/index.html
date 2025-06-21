@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EnGden - Home</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+{% include "components/headerAndMenu.html" %}
+<div id="root">
+
+</div>
+{{ subjects|json_script:"subjects-data" }}
+{{ sheets|json_script:"sheets-data" }}
+{{ notes|json_script:"notes-data" }}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        let levels = [
+            "One",
+            "Two",
+            "Three",
+            "Four",
+            "Five",
+        ]
+        levels.forEach((level, index) => {
+            $('#root').append(`<div class="level-container">
+                <h2 class="level-title">--- Level ${level} Subjects ---</h2>
+                <div class="subject-list" id="subject-list-${index + 1}">
+                </div>
+            </div>`);
+
+        })
+        const data = {
+            subjects: JSON.parse(document.getElementById('subjects-data').textContent),
+            sheets: JSON.parse(document.getElementById('sheets-data').textContent),
+            notes: JSON.parse(document.getElementById('notes-data').textContent)
+        };
+        function toggleDisplay(id){
+            const element = document.getElementById(id);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+        data.subjects.forEach(subject => {
+            const level = subject.level;
+            const subjectHtml = `
+            <div class="subject-item" id="subject-${subject.id}">
+                <div class="drop-down-header ">
+                    <h3>${subject.name}</h3> <button class="drop-down-btn" id="drop-down-${subject.id}"><span class='arrow'>▼</span></button>
+                </div>
+                <div class="subject-details" id="details-${subject.id}" style="display: none;">
+                    <div class="drop-down-header ">
+                        <h3>Sheets</h3> <button class="drop-down-btn" id="drop-down-sheets-${subject.id}"><span class='arrow'>▼</span></button>
+                    </div>
+                    <div class="sheets-details" id="sheets-details-${subject.id}" style="display: none;">
+
+                    </div>
+                    <div class="drop-down-header ">
+                        <h3>Notes</h3> <button class="drop-down-btn" id="drop-down-notes-${subject.id}"><span class='arrow'>▼</span></button>
+                    </div>
+                    <div class="subject-details" id="notes-details-${subject.id}" style="display: none;">
+
+                    </div>
+                    <div class="drop-down-header ">
+                        <h3>MCQ</h3>
+                        <button class="button">
+
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+                          </svg>
+
+                          <div class="text">
+                            Solve Now
+                          </div>
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+            $(`#subject-list-${level}`).append(subjectHtml);
+            $("#drop-down-" + subject.id).click(function() {
+                toggleDisplay("details-" + subject.id);
+                $(this).find(".arrow").toggleClass("rotated");
+            });
+            $("#drop-down-sheets-" + subject.id).click(function() {
+                toggleDisplay("sheets-details-" + subject.id);
+                $("#drop-down-sheets-" + subject.id + " .arrow").toggleClass("rotated");
+            });
+            $("#drop-down-notes-" + subject.id).click(function() {
+                toggleDisplay("notes-details-" + subject.id);
+                $("#drop-down-notes-" + subject.id + " .arrow").toggleClass("rotated");
+            });
+            data.sheets.forEach(sheet => {
+                if (sheet.subject_id === subject.id) {
+                    const sheetHtml = `<div class="sheet-item rec-item">
+                        <a href="${sheet.sheet_file}" target="_blank" download>${sheet.sheet_name}</a>
+                    </div>`;
+                    $(`#sheets-details-${subject.id}`).append(sheetHtml);
+                }
+            });
+            console.log(data.sheets);
+            data.notes.forEach(note => {
+                if (note.subject_id === subject.id) {
+                    const noteHtml = `<div class="note-item rec-item">
+                        <a href="${note.file}" target="_blank" download>${note.name}</a>
+                        </div>`;
+                    $(`#notes-details-${subject.id}`).append(noteHtml);
+                }
+            });
+        });
+        /*$(".drop-down-btn").hover(function() {
+            $(this).html(
+                `<div id="atom">
+                    <div id="nucleus"></div>
+                    <div class="orbit"><div class="electron"></div></div>
+                    <div class="orbit"><div class="electron"></div></div>
+                    <div class="orbit"><div class="electron"></div></div>
+                    <div class="orbit"><div class="electron"></div></div>
+                    <div class="orbit"><div class="electron"></div></div>
+                </div>`
+            );
+        });*/
+        $(".drop-down-btn").mouseleave(function() {
+            $(this).html("<span class='arrow'>▼</span>");
+        });
+
+    });
+</script>
+</body>
+</html>

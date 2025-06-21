@@ -1,0 +1,187 @@
+<!-- headerAndMenu.html -->
+{% load static %}
+<input type="checkbox" id="burger" style="display:none;">
+<style>
+  .header-bar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7em; /* Increased to fit the atom fully */
+    background-color: #f8f9fa;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    justify-content: space-between; /* Add this */
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0.5em 0;
+    flex-grow: 1; /* Add this */
+    position: absolute; /* Add this */
+    width: 100%; /* Add this */
+    left: 0; /* Add this */
+  }
+  #atom {
+  margin-left: auto;
+  position: relative;
+  width: 13em;
+  height: 13em;
+  display: block;
+  box-sizing: border-box;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+#nucleus {
+  position: absolute;
+  width: 1.2em;
+  height: 1.2em;
+  background: #2196F3;
+  box-shadow: 0 0 0.8em #2196F3;
+  animation: shining 2s infinite linear;
+  z-index: 999;  /* Increased z-index */
+  border-radius: 50%;
+  left: calc(50% - 0.6em);  /* Center using calc */
+  top: calc(50% - 0.6em);   /* Center using calc */
+  transform: none;  /* Remove transform */
+}
+
+.orbit {
+  position: absolute;
+  width: var(--orbit-radius);
+  height: var(--orbit-radius);
+  border-radius: 50%;
+  border: 0.08em solid rgba(33,150,243,0.25);
+  box-shadow: 0 0 0.5em #2196F322;
+  left: calc(50% - var(--orbit-radius) / 2);  /* Center orbit */
+  top: calc(50% - var(--orbit-radius) / 2);   /* Center orbit */
+  transform-style: preserve-3d;
+  transform: var(--orbit-transform);  /* Remove translate */
+}
+
+.electron {
+  position: absolute;
+  width: 0.4em;
+  height: 0.4em;
+  background: #FF9800;
+  box-shadow: 0 0 0.6em #FF9800;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  margin: -0.2em 0 0 -0.2em;
+  transform-origin: 50% 50%;
+  animation: electronOrbit linear infinite;
+  backface-visibility: visible;
+}
+
+@keyframes electronOrbit {
+  from {
+    transform: rotate(var(--start-angle)) translateX(calc(var(--orbit-radius) / 2)) rotate(calc(-1 * var(--start-angle)));
+  }
+  to {
+    transform: rotate(calc(var(--start-angle) + 360deg)) translateX(calc(var(--orbit-radius) / 2)) rotate(calc(-1 * var(--start-angle) - 360deg));
+  }
+}
+@keyframes orbitSpecial {
+  0%   { border: 0; border-top: 0.025em solid rgba(255,255,255,0.5);}
+  35%  { border: 0; border-right: 0.025em solid rgba(255,255,255,0.5);}
+  70%  { border: 0; border-bottom: 0.025em solid rgba(255,255,255,0.5);}
+  100% { border: 0; border-left: 0.025em solid rgba(255,255,255,0.5);}
+}
+@keyframes shining {
+    0% {
+        box-shadow: 0 0 0 transparent;
+    }
+    50% {
+        box-shadow: 0 0 0.7em #2196F3;
+    }
+    100% {
+        box-shadow: 0 0 0 transparent;
+    }
+}
+  #burger:checked ~ nav {
+    left: 0;
+  }
+  .header-bar {
+      z-index: 1200;
+    }
+    .burger {
+      z-index: 1201;
+    }
+    nav {
+      z-index: 1100;
+    }
+    .btn{
+        background-color: #1b2c99;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        height: fit-content;
+        width: fit-content;
+        position: absolute;
+        left: 3%;
+        z-index: 100000;
+    }
+    img {
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 0.1em;
+    }
+</style>
+<div class="header-bar">
+  <button class="btn" onclick="location.href='/logout'">
+      Logout
+  </button>
+  <h1><span onclick="location.href='/home'" style="cursor: pointer; display: flex; justify-content: center; align-items: center">En<img src="{% static 'img.png' %}"/>en</span></h1>
+  <div id="atom">
+    <div id="nucleus"></div>
+    <!-- K shell: 2 electrons (innermost) -->
+    <div class="orbit" style="--orbit-radius: 2.4em; --orbit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);">
+      {% for i in context.range2 %}
+        <div class="electron" style="--start-angle: calc(360deg * {{i}} / 2); animation-duration: 2s;"></div>
+      {% endfor %}
+    </div>
+    <!-- L shell: 8 electrons -->
+    <div class="orbit" style="--orbit-radius: 3.2em; --orbit-transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);">
+      {% for i in context.range8 %}
+        <div class="electron" style="--start-angle: calc(360deg * {{i}} / 8); animation-duration: 2.5s;"></div>
+      {% endfor %}
+    </div>
+    <!-- M shell: 18 electrons -->
+    <div class="orbit" style="--orbit-radius: 4em; --orbit-transform: rotateX(120deg) rotateY(60deg) rotateZ(30deg);">
+      {% for i in context.range18 %}
+        <div class="electron" style="--start-angle: calc(360deg * {{i}} / 18); animation-duration: 3s;"></div>
+      {% endfor %}
+    </div>
+    <!-- N shell: 25 electrons -->
+    <div class="orbit" style="--orbit-radius: 4.8em; --orbit-transform: rotateX(45deg) rotateY(120deg) rotateZ(60deg);">
+      {% for i in context.range25 %}
+        <div class="electron" style="--start-angle: calc(360deg * {{i}} / 25); animation-duration: 3.5s;"></div>
+      {% endfor %}
+    </div>
+    <!-- O shell: 9 electrons -->
+    <div class="orbit" style="--orbit-radius: 5.6em; --orbit-transform: rotateX(90deg) rotateY(90deg) rotateZ(90deg);">
+      {% for i in context.range9 %}
+        <div class="electron" style="--start-angle: calc(360deg * {{i}} / 9); animation-duration: 4s;"></div>
+      {% endfor %}
+    </div>
+    <!-- P shell: 2 electrons (outermost) -->
+    <div class="orbit" style="--orbit-radius: 6.4em; --orbit-transform: rotateX(150deg) rotateY(150deg) rotateZ(150deg);">
+      {% for i in context.range2 %}
+        <div class="electron" style="--start-angle: calc(360deg * {{i}} / 2); animation-duration: 4.5s;"></div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div style="height: 8vw;">
+
+</div>

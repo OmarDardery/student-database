@@ -21,7 +21,7 @@
     justify-content: space-around;
     align-items: center;
     border-radius: 10px;
-    background-color: darkseagreen;
+    background-color: #264b5d;
     width: 85%;
     height: 20%;
 }
@@ -31,8 +31,9 @@
     border-radius: 10px;
     cursor: pointer;
     height: 100%;
-    background-color: darkseagreen;
+    background-color: #264b5d;
     font-size: 5vh;
+    color: mintcream;
 }
 
 .form{
@@ -46,8 +47,9 @@
     gap: 10%;
     padding: 5%;
 }
+
 .form-submit-button{
-    background-color: #4CAF50;
+    background-color: #2f4f4f;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -62,23 +64,25 @@
 }
 button.active{
     background-color: mintcream;
-    color: forestgreen;
+    color: #264b5d;
 }
 .form-field{
     display: flex;
     flex-direction: column;
     width: 90%;
-    background-color: darkseagreen;
+    background-color: #264b5d;
     border-radius: 10px;
     padding: 20px 10px;
     justify-content: center;
-
+    position: relative;
+    margin-top: 5vh;
+    height: fit-content;
 }
 
 .form-field label{
     font-size: 1rem;
     margin-bottom: 5px;
-    color: darkslategray;
+    color: mintcream;
     text-align: left;
 }
 .message{
@@ -104,5 +108,5 @@ button.active{
     margin-left: 10px;
 }
 body{
-    background-color: darkslategray;
+    background-color: #264b5d;
 }

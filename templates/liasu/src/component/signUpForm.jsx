@@ -64,7 +64,7 @@ function SignUpForm(props){
                     {(() => {
                         switch(phase) {
                             case 1:
-                                return (<div className={"form-field"}>
+                                return (<div style={{"width": "100%"}}>
                                             <div className={"form-field"}>
                                             <label htmlFor="ID">University ID:</label>
                                                 <input type="text" onChange={(e)=>{
