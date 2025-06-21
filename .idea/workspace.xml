@@ -5,44 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd590ac8-761b-456e-a4e5-7a961b63e52d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/MCQ/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/components/headerAndMenu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home/static/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home/static/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/asset-manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/css/main.3a91aa1a.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/css/main.3a91aa1a.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.6955bdf4.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.6955bdf4.js.LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.6955bdf4.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/student-database.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/student-database.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/req.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student_database/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/student_database/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student_database/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/student_database/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/permenant static/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/src/components/functions/getCookie.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/liasu/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/liasu/src/component/signUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/component/signUpForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/liasu/src/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/css/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sheets/2f4f4f.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +128,7 @@
       <workItem from="1750449598296" duration="1968000" />
       <workItem from="1750451580687" duration="213000" />
       <workItem from="1750452206666" duration="636000" />
-      <workItem from="1750490279538" duration="29748000" />
+      <workItem from="1750490279538" duration="29927000" />
     </task>
     <servers />
   </component>
