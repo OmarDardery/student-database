@@ -1,11 +1,12 @@
-import getCookie from './getCookie';
+
 async function validateUser(id, password) {
   try {
+    console.log("Validating user");
     const response = await fetch(`/api/auth`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('student_database_csrftoken'),
+        'X-CSRFToken': document.getElementById('root').getAttribute('data-csrf'),
       },
       body: JSON.stringify({ id, password }),
     });

@@ -125,6 +125,7 @@ load_dotenv()
 STATICFILES_DIRS = [
     BASE_DIR / 'templates/liasu/permenant static/static',
     BASE_DIR / 'templates/home/static',
+    BASE_DIR / 'templates/liasu/build/static',
 ]
 CACHES = {
     'default': {
@@ -142,12 +143,11 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'your-smtp-host.com'      # SMTP server, e.g., smtp.gmail.com
-EMAIL_PORT = 587                       # Port for TLS (typically 587)
-EMAIL_USE_TLS = True                   # Use TLS encryption
-EMAIL_HOST_USER = 'your-email@example.com'  # Your email address
-EMAIL_HOST_PASSWORD = 'your-password'      # Your email password
-DEFAULT_FROM_EMAIL = 'your-email@example.com'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "apikey"  # This is the literal string "apikey"
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')  # Your SendGrid API key
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

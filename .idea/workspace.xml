@@ -5,8 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd590ac8-761b-456e-a4e5-7a961b63e52d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sheets/2f4f4f.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/css/main.cae00fbd.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/css/main.cae00fbd.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.1cc29ecc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.1cc29ecc.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.1cc29ecc.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.290100ec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.290100ec.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.290100ec.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.60b91705.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.60b91705.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.60b91705.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.62b4545b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.62b4545b.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.62b4545b.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.851611ee.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.851611ee.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.851611ee.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.def388e7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.def388e7.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.def388e7.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.f3437f1c.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.f3437f1c.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.f3437f1c.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.f5e98921.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.f5e98921.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.f5e98921.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/req.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student_database/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/student_database/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/permenant static/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/permenant static/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/permenant static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/permenant static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/src/component/functions/validateUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/component/functions/validateUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/src/component/functions/validate_student_id.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/component/functions/validate_student_id.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/src/component/signUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/component/signUpForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +80,9 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2ylbtx0DnWDAWkzgyFoFYnxbgiE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -67,7 +106,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "ts.external.directory.path": "/snap/pycharm-professional/496/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -129,6 +168,7 @@
       <workItem from="1750451580687" duration="213000" />
       <workItem from="1750452206666" duration="636000" />
       <workItem from="1750490279538" duration="29927000" />
+      <workItem from="1750536609471" duration="10927000" />
     </task>
     <servers />
   </component>
