@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -124,10 +125,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
     BASE_DIR / 'templates/liasu/permenant static/static',
     BASE_DIR / 'templates/home/static',
     BASE_DIR / 'templates/liasu/build/static',
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
