@@ -8,7 +8,7 @@ def index(request):
     if request.user.is_authenticated:
         response = redirect('home')
     else:
-        response = render(request, 'liasu/build/index.html')
+        response = render(request, 'liasu/permenant static/index.html')
     response.set_cookie(
         "student_database_csrftoken",
         request.COOKIES.get("csrftoken"),
