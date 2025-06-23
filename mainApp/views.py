@@ -58,7 +58,6 @@ def home(request):
             "range8": range(8),
         }
     }
-    print(data)
     return render(request, 'home/index.html', data)
 
 def authenticate_user(request):
@@ -78,7 +77,6 @@ def authenticate_user(request):
 
 from django.core.mail import send_mail
 import random
-import logging
 import os
 
 def send_code(request):
@@ -102,11 +100,8 @@ def send_code(request):
             email = f"{user_id}@students.eui.edu.eg"
             
             # Log for debugging
-            logging.warning(f"Attempting to send verification code {code} to {email}")
-            
             # Check if SENDGRID_API_KEY is set
             if not os.environ.get('SENDGRID_API_KEY'):
-                logging.error("SENDGRID_API_KEY is not set in environment variables")
                 return JsonResponse({"requestStatus": "False", "message": "Email configuration error"})
             
             # Send the email with the code
@@ -118,35 +113,24 @@ def send_code(request):
                     recipient_list=[email],
                     fail_silently=False,
                 )
-                logging.warning(f"Email sent successfully to {email}")
                 return JsonResponse({"requestStatus": "True"})
             except Exception as e:
-                logging.error(f"Failed to send email: {str(e)}")
                 return JsonResponse({"requestStatus": "False", "message": f"Failed to send email: {str(e)}"})
                 
         except json.JSONDecodeError:
             return JsonResponse({"requestStatus": "False", "message": "Invalid JSON data"})
         except Exception as e:
-            logging.error(f"Error in send_code: {str(e)}")
             return JsonResponse({"requestStatus": "False", "message": f"Error: {str(e)}"})
     else:
         return JsonResponse({"requestStatus": "False", "message": "invalid request method"})
 
-import json
-import logging
 
 def validate_code(request):
     if request.method == "POST":
         try:
-            # Log the session data
-            logging.warning(f"Session code: '{request.session.get('code')}'")
-            logging.warning(f"Session keys: {list(request.session.keys())}")
-            
             # Parse JSON data from request body
             data = json.loads(request.body)
-            logging.warning(f"Received data: {data}")
-            user_code = data.get("code")  # Get 'code' from JSON data
-            logging.warning(f"Received user_code: '{user_code}'")
+            user_code = data.get("code")
             
             if not request.session.get("code"):
                 return JsonResponse({"requestStatus": "False", "message": "No code set"})
@@ -154,27 +138,14 @@ def validate_code(request):
                 # Convert both to strings, strip whitespace, and compare
                 session_code_str = str(request.session["code"]).strip()
                 user_code_str = str(user_code).strip()
-                
-                logging.warning(f"Comparing: '{user_code_str}' (type: {type(user_code_str)}) with '{session_code_str}' (type: {type(session_code_str)})")
-                logging.warning(f"String representation equality: {user_code_str == session_code_str}")
-                
+
                 if user_code_str == session_code_str:
                     return JsonResponse({"requestStatus": "True"})
                 else:
-                    # Log the comparison with repr to see hidden characters
-                    logging.warning(f"Code comparison failed: {repr(user_code_str)} != {repr(session_code_str)}")
-                    # Check character by character
-                    if len(user_code_str) == len(session_code_str):
-                        for i, (c1, c2) in enumerate(zip(user_code_str, session_code_str)):
-                            if c1 != c2:
-                                logging.warning(f"Mismatch at position {i}: '{c1}' (ord: {ord(c1)}) != '{c2}' (ord: {ord(c2)})")
-                    
                     return JsonResponse({"requestStatus": "False", "message": "Invalid code"})
         except json.JSONDecodeError as e:
-            logging.error(f"JSON Decode Error: {str(e)}")
             return JsonResponse({"requestStatus": "False", "message": "Invalid JSON data"})
         except Exception as e:
-            logging.error(f"Unexpected error: {str(e)}")
             return JsonResponse({"requestStatus": "False", "message": f"Server error: {str(e)}"})
     else:
         return JsonResponse({"requestStatus": "False", "message": "invalid request method"})

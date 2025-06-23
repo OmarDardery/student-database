@@ -84,10 +84,6 @@
                 </div>
             </div>`;
             $(`#subject-list-${level}`).append(subjectHtml);
-            $("#drop-down-" + subject.id).click(function() {
-                toggleDisplay("details-" + subject.id);
-                $(this).find(".arrow").toggleClass("rotated");
-            });
 
             data.sheets.forEach(sheet => {
                 if (sheet.subject_id === subject.id) {
@@ -110,7 +106,15 @@
             });
         });
         $('#root').on('click', '.drop-down-btn', function() {
-            const target = $(this).attr('id').replace('drop-down-', '');
+            const btnId = $(this).attr('id');
+            let target;
+            if (btnId.startsWith('drop-down-sheets-')) {
+                target = btnId.replace('drop-down-sheets-', 'sheets-details-');
+            } else if (btnId.startsWith('drop-down-notes-')) {
+                target = btnId.replace('drop-down-notes-', 'notes-details-');
+            } else {
+                target = btnId.replace('drop-down-', 'details-');
+            }
             toggleDisplay(target);
             $(this).children('.arrow').toggleClass('rotated');
         });
