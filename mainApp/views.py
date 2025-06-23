@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
-from .models import Subject, Sheets, Notes, Semester
+from .models import Subject, Sheets, Notes, Semester, Mcq
 def index(request):
     if request.user.is_authenticated:
         response = redirect('home')
@@ -58,6 +58,7 @@ def home(request):
             "range8": range(8),
         }
     }
+    print(data)
     return render(request, 'home/index.html', data)
 
 def authenticate_user(request):
@@ -211,3 +212,29 @@ def sign_up_user(request):
             return JsonResponse({"completed": False, "message": str(e)})
     else:
         return JsonResponse({"completed": False, "message": "Invalid request method"})
+
+@login_required(login_url='login')
+def mcq(request, subject_id):
+    try:
+        mcqs = Mcq.objects.select_related('topic').filter(subject=subject_id)
+        mcqs_list = []
+        for mcq in mcqs:
+            mcq_data = {k: v for k, v in vars(mcq).items() if not k.startswith('_') and k != 'topic_id'}
+            topic_data = {f"topic_{k}": v for k, v in vars(mcq.topic).items() if not k.startswith('_')}
+            mcqs_list.append({**mcq_data, **topic_data})
+        topics = []
+        print("mcqs_list", mcqs_list)
+
+        for mcq in mcqs_list:
+            if {"name": mcq["topic_topic_name"], "id": mcq["topic_id"]} not in topics:
+                topics.append({"name": mcq["topic_topic_name"], "id": mcq["topic_id"]})
+
+        return render(request, 'MCQ/index.html', {'mcqs': mcqs_list, "topics": topics, "context": {
+                    "range18": range(18),
+                    "range25": range(25),
+                    "range9": range(9),
+                    "range2": range(2),
+                    "range8": range(8),
+                }})
+    except Mcq.DoesNotExist:
+        return JsonResponse({"error": "mcq not found"}, status=404)

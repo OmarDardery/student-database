@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxLengthValidator, EmailValidator
 from cloudinary.models import CloudinaryField
+from smart_selects.db_fields import ChainedForeignKey
 
 class Student(AbstractUser):
     username = models.CharField(max_length=9, blank=False, validators=[MaxLengthValidator(9)], unique=True, error_messages={"unique": "This ID has already been used.", 'blank': "This field cannot be blank."})
@@ -68,7 +69,17 @@ class Sheets(models.Model):
         error_messages={'blank': "This field cannot be blank."}
     )
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='sheets')
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='sheets', blank=True, null=True)
+    topic = ChainedForeignKey(
+        Topic,
+        chained_field="subject",
+        chained_model_field="subject",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        blank=True,
+        null=True,
+        related_name='sheets'
+    )
     def __str__(self):
         return self.sheet_name
 
@@ -83,7 +94,17 @@ class Notes(models.Model):
         error_messages={'blank': "This field cannot be blank."}
     )
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='notes')
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='notes', blank=True, null=True)
+    topic = ChainedForeignKey(
+        Topic,
+        chained_field="subject",
+        chained_model_field="subject",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        blank=True,
+        null=True,
+        related_name='notes'
+    )
     def __str__(self):
         return self.note_name
 
@@ -91,7 +112,17 @@ class Mcq(models.Model):
     id = models.AutoField(primary_key=True)
     posted_by = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='mcqs')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='mcqs')
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='mcqs', blank=True, null=True)
+    topic = ChainedForeignKey(
+        Topic,
+        chained_field="subject",
+        chained_model_field="subject",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        blank=True,
+        null=True,
+        related_name='mcqs'
+    )
     mcq_name = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(100)], error_messages={'blank': "This field cannot be blank."})
     mcq_a = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(500)], error_messages={'blank': "This field cannot be blank."})
     mcq_b = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(500)], error_messages={'blank': "This field cannot be blank."})

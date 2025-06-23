@@ -10,4 +10,5 @@ urlpatterns = [
     path("api/validate-code", views.validate_code, name='validate-code'),
     path("api/sign-up", views.sign_up_user, name='sign-up'),  # Add this line
     path("logout", views.logout_user, name="logout-user"),
+    path("mcq/<str:subject_id>", views.mcq, name="mcq"),
 ]

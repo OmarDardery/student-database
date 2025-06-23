@@ -1,10 +1,130 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>EnGden - MCQ</title>
 </head>
-<body>
+<style>
+    #topics-selection {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+        overflow-y: scroll;
+        border-radius: 0;
+        padding: 0.2em 0;
+    }
+    .topic-button {
+        padding: 0.7em 1.4em;
+        background-color: white;
+        border: 1px solid #333;
+        color: #333;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+    .topic-button.selected{
+        background-color: #1b2c99;
+        color: white;
+    }
+    .answer{
+        color: whitesmoke;
+        cursor: pointer;
+        font-weight: bold;
+        background-color: whitesmoke;
+        padding: 0.2em 0.5em;
+        transition: all 0.3s ease-in-out;
+        border-radius: 3px;
+    }
+    .answer.revealed {
+        color: #333;
+    }
+    .mcq{
+        border: 1px solid #ccc;
+        padding: 1em;
+        border-radius: 0.5em;
+        background-color: #1b2c99;
+        color: white;
+        width: clamp(270px, 30vw, 600px);
+        display: flex;
+        flex-direction: column;
 
+    }
+    .answer-container{
+        align-self: flex-end;
+    }
+    ul{
+        list-style-type: none;
+        padding: 0;
+
+    }
+    #mcq-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 350px);
+        gap: 4vw; /* optional */
+        justify-content: space-around;
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+</style>
+<body>
+{% include 'components/headerAndMenu.html' %}
+<div id="topics-selection">
+
+</div>
+<div id="mcq-container">
+
+</div>
+
+{{ mcqs|json_script:"mcqs-data" }}
+{{ topics|json_script:"topics-data" }}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const mcqs = JSON.parse(document.getElementById('mcqs-data').textContent);
+        console.log(mcqs);
+        const topics = JSON.parse(document.getElementById('topics-data').textContent);
+        console.log(topics);
+        let selectedTopics = [];
+        function loadMCQs(topicIds) {
+            $('#mcq-container').empty();
+            topicIds.forEach(topicId => {
+                const filteredMCQs = mcqs.filter(mcq => mcq.topic_id === topicId);
+                filteredMCQs.forEach(mcq => {
+                    $('#mcq-container').append(`
+                        <div class="mcq">
+                            <h3>${mcq.mcq_name}</h3>
+                            <ul>
+                                ${[{mcq: mcq.mcq_a, l : "a"}, {mcq: mcq.mcq_b, l : "b"}, {mcq: mcq.mcq_c, l : "c"}, {mcq: mcq.mcq_d, l : "d"}].map((option) => `<li>${option.l}. ${option.mcq}</li>`).join('')}
+                            </ul>
+                            <p class="answer-container">Correct Answer: <span class="answer">${mcq.mcq_answer}</span></p>
+                        </div>
+                    `);
+                });
+            });
+        }
+        function handleTopic(topicId) {
+            if (selectedTopics.includes(topicId)) {
+                selectedTopics = selectedTopics.filter(id => id !== topicId);
+            } else {
+                selectedTopics.push(topicId);
+            }
+            loadMCQs(selectedTopics);
+        }
+        topics.forEach(topic => {
+            $('#topics-selection').append(`<button class="topic-button" data-topic-id="${topic.id}">${topic.name}</button>`);
+        });
+        $('#topics-selection').on('click', '.topic-button', function() {
+            const topicId = $(this).data('topic-id');
+            $(this).toggleClass("selected");
+            handleTopic(topicId);
+        });
+        $('#mcq-container').on('click', '.answer', function() {
+            $(this).toggleClass('revealed');
+        });
+    });
+</script>
 </body>
 </html>
