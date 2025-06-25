@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="fd590ac8-761b-456e-a4e5-7a961b63e52d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/headerAndMenu.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/headerAndMenu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/MCQ/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/MCQ/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/static/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +139,13 @@
       <workItem from="1750536609471" duration="10927000" />
       <workItem from="1750582757160" duration="2376000" />
       <workItem from="1750630050291" duration="7773000" />
-      <workItem from="1750685104242" duration="7903000" />
+      <workItem from="1750685104242" duration="8517000" />
+      <workItem from="1750717698592" duration="2921000" />
+      <workItem from="1750858358492" duration="735000" />
+      <workItem from="1750873129087" duration="32000" />
+      <workItem from="1750873180801" duration="20000" />
+      <workItem from="1750877238670" duration="724000" />
+      <workItem from="1750880100767" duration="793000" />
     </task>
     <servers />
   </component>
