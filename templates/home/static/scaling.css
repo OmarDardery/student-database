@@ -1,0 +1,3 @@
+html{
+    font-size: clamp(14px, 2vh + 0.5rem, 22px);
+}
