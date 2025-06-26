@@ -129,6 +129,13 @@
                 }
             });
         });
+								const firstSubjectId = $(this).val();
+            $('#topic').empty(); // Clear previous topics
+            data.topics.forEach(topic => {
+                if (topic.subject_id == firstSubjectId) {
+                    $('#topic').append(`<option value="${topic.id}">${topic.topic_name}</option>`);
+                }
+            });
     });
 </script>
 </body>
