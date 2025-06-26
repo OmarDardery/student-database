@@ -1,9 +1,11 @@
+from pydoc_data.topics import topics
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
-from .models import Subject, Sheets, Notes, Semester, Mcq
+from .models import Subject, Sheets, Notes, Semester, Mcq, Topic
 def index(request):
     if request.user.is_authenticated:
         response = redirect('home')
@@ -194,7 +196,6 @@ def mcq(request, subject_id):
             topic_data = {f"topic_{k}": v for k, v in vars(mcq.topic).items() if not k.startswith('_')}
             mcqs_list.append({**mcq_data, **topic_data})
         topics = []
-        print("mcqs_list", mcqs_list)
 
         for mcq in mcqs_list:
             if {"name": mcq["topic_topic_name"], "id": mcq["topic_id"]} not in topics:
@@ -209,3 +210,55 @@ def mcq(request, subject_id):
                 }})
     except Mcq.DoesNotExist:
         return JsonResponse({"error": "mcq not found"}, status=404)
+
+@login_required(login_url='login')
+def mcq_view(request):
+    subjects = list(Subject.objects.all().values())
+    topics = list(Topic.objects.all().values())
+    data = {
+        "subjects": subjects,
+        "topics": topics,
+        "context": {
+            # ... your existing context ...
+            "range18": range(18),
+            "range25": range(25),
+            "range9": range(9),
+            "range2": range(2),
+            "range8": range(8),
+        }
+    }
+    return render(request, 'MCQ/add.html', data)
+
+@login_required(login_url='login')
+def add_mcq(request):
+    if request.method == "POST":
+        try:
+            subject_id = request.POST.get("subject")
+            topic_id = request.POST.get("topic")
+            if not subject_id or subject_id == 'undefined' or not topic_id or topic_id == 'undefined':
+                return JsonResponse({"status": "error", "message": "Subject and topic must be selected."})
+            mcq_name = request.POST.get("question")
+            mcq_a = request.POST.get("option1")
+            mcq_b = request.POST.get("option2")
+            mcq_c = request.POST.get("option3")
+            mcq_d = request.POST.get("option4")
+            answer_map = {'option1': 'A', 'option2': 'B', 'option3': 'C', 'option4': 'D'}
+            mcq_answer = answer_map.get(request.POST.get("answer"), 'A')
+
+            mcq = Mcq.objects.create(
+                posted_by=request.user,
+                subject_id=int(subject_id),
+                topic_id=int(topic_id),
+                mcq_name=mcq_name,
+                mcq_a=mcq_a,
+                mcq_b=mcq_b,
+                mcq_c=mcq_c,
+                mcq_d=mcq_d,
+                mcq_answer=mcq_answer
+            )
+            mcq.save()
+            return JsonResponse({"status": "success", "message": "MCQ added successfully"})
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)})
+    else:
+        return JsonResponse({"status": "error", "message": "Invalid request method"})

@@ -11,4 +11,6 @@ urlpatterns = [
     path("api/sign-up", views.sign_up_user, name='sign-up'),  # Add this line
     path("logout", views.logout_user, name="logout-user"),
     path("mcq/<str:subject_id>", views.mcq, name="mcq"),
+    path("add-mcq", views.mcq_view, name="add-mcq"),
+    path("api/add-mcq", views.add_mcq, name="add-mcq-api"),
 ]
