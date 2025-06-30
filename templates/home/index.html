@@ -12,6 +12,15 @@
 <div id="root">
 
 </div>
+<div id="useful-links">
+    <div id="drop-down-header-link ">
+        <h3>Useful Links</h3> <button id="drop-down-useful-links"><span class='arrow'>▼</span></button>
+    </div>
+    <div id="links-container">
+
+    </div>
+</div>
+
 <div class="wrapper">
   <input type="checkbox" />
   <div class="btn"></div>
@@ -145,6 +154,12 @@
                 target = btnId.replace('drop-down-', 'details-');
             }
             toggleDisplay(target);
+            $(this).children('.arrow').toggleClass('rotated');
+        });
+        $("#useful-links").hide();
+
+        $("#drop-down-useful-links").click(function() {
+            $("#links-container").toggle();
             $(this).children('.arrow').toggleClass('rotated');
         });
 

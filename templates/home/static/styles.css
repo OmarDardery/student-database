@@ -5,6 +5,10 @@ body{
     padding: 20px;
     padding-bottom: 15em;
 }
+#root{
+  width: 90vw;
+}
+#drop-down-header-link,
 .drop-down-header {
     padding: 10px 20px;
     text-align: center;
@@ -14,6 +18,8 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+
+#drop-down-useful-link,
 .drop-down-btn{
     background: none;
     border: solid 2px black;
@@ -44,7 +50,7 @@ body{
 .arrow.rotated {
     transform: rotateZ(180deg);
 }
-
+#drop-down-useful-link,
 .drop-down-header,
 .rec-item{
     background-color: #ffffff;

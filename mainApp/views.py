@@ -5,19 +5,12 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
-from .models import Subject, Sheets, Notes, Semester, Mcq, Topic
+from .models import Subject, Sheets, Notes, Semester, Mcq, Topic, Link
 def index(request):
     if request.user.is_authenticated:
         response = redirect('home')
     else:
         response = render(request, 'liasu/permenant static/index.html')
-    response.set_cookie(
-        "student_database_csrftoken",
-        request.COOKIES.get("csrftoken"),
-        httponly=False,
-        samesite='Lax',
-        secure=request.is_secure(),
-    )
     return response
 
 @login_required(login_url='login')
@@ -46,6 +39,7 @@ def home(request):
         for n in Notes.objects.all()
     ]
     semesters = list(Semester.objects.all().values())
+    links = list(Link.objects.filter(pending=False).values())
     data = {
         "subjects": subjects,
         "sheets": sheets,

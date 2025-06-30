@@ -123,11 +123,12 @@ class Mcq(models.Model):
         null=True,
         related_name='mcqs'
     )
-    mcq_name = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(100)], error_messages={'blank': "This field cannot be blank."})
-    mcq_a = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(500)], error_messages={'blank': "This field cannot be blank."})
-    mcq_b = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(500)], error_messages={'blank': "This field cannot be blank."})
-    mcq_c = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(500)], error_messages={'blank': "This field cannot be blank."})
-    mcq_d = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(500)], error_messages={'blank': "This field cannot be blank."})
+    pending = models.BooleanField(default=False)
+    mcq_name = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(200)], error_messages={'blank': "This field cannot be blank."})
+    mcq_a = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(200)], error_messages={'blank': "This field cannot be blank."})
+    mcq_b = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(200)], error_messages={'blank': "This field cannot be blank."})
+    mcq_c = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(200)], error_messages={'blank': "This field cannot be blank."})
+    mcq_d = models.CharField(max_length=200, blank=False, validators=[MaxLengthValidator(200)], error_messages={'blank': "This field cannot be blank."})
     mcq_choices = [
         ('A', 'Option A'),
         ('B', 'Option B'),
@@ -138,3 +139,13 @@ class Mcq(models.Model):
 
     def __str__(self):
         return self.mcq_name
+
+class Link(models.Model):
+    name = models.CharField(max_length=100, blank=False, validators=[MaxLengthValidator(100)], error_messages={'blank': "This field cannot be blank."})
+    description = models.CharField(max_length=300, blank=False, validators=[MaxLengthValidator(300)], error_messages={'blank': "This field cannot be blank."})
+    link = models.TextField(blank=False)
+    pending = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
