@@ -1,11 +1,29 @@
 from pydoc_data.topics import topics
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
 from .models import Subject, Sheets, Notes, Semester, Mcq, Topic, Link
+from pydantic import BaseModel, Field
+from google import genai
+from django.conf import settings
+
+client = genai.Client(api_key=settings.GOOGLE_API_KEY)
+
+class mcq_data(BaseModel):
+    subject_name: str = Field(..., description="ID of the subject")
+    topic_name: str = Field(..., description="ID of the topic")
+
+    mcq_name: str = Field(..., description="The question text")
+    mcq_a: str = Field(..., description="Option A text")
+    mcq_b: str = Field(..., description="Option B text")
+    mcq_c: str = Field(..., description="Option C text")
+    mcq_d: str = Field(..., description="Option D text")
+    mcq_answer: str = Field(..., description="Correct answer option (A/B/C/D)")
+    pending: bool = Field(False, description="Whether the MCQ is pending approval")
+    repeated: bool = Field(False, description="Whether the MCQ is repeated or not")
+
 def index(request):
     if request.user.is_authenticated:
         response = redirect('home')
@@ -52,7 +70,8 @@ def home(request):
             "range9": range(9),
             "range2": range(2),
             "range8": range(8),
-        }
+        },
+        "admin": request.user.is_superuser,
     }
     return render(request, 'home/index.html', data)
 
@@ -183,7 +202,7 @@ def sign_up_user(request):
 @login_required(login_url='login')
 def mcq(request, subject_id):
     try:
-        mcqs = Mcq.objects.select_related('topic').filter(subject=subject_id)
+        mcqs = Mcq.objects.select_related('topic').filter(subject=subject_id, pending=False)
         mcqs_list = []
         for mcq in mcqs:
             mcq_data = {k: v for k, v in vars(mcq).items() if not k.startswith('_') and k != 'topic_id'}
@@ -238,20 +257,42 @@ def add_mcq(request):
             mcq_d = request.POST.get("option4")
             answer_map = {'option1': 'A', 'option2': 'B', 'option3': 'C', 'option4': 'D'}
             mcq_answer = answer_map.get(request.POST.get("answer"), 'A')
-
-            mcq = Mcq.objects.create(
-                posted_by=request.user,
-                subject_id=int(subject_id),
-                topic_id=int(topic_id),
-                mcq_name=mcq_name,
-                mcq_a=mcq_a,
-                mcq_b=mcq_b,
-                mcq_c=mcq_c,
-                mcq_d=mcq_d,
-                mcq_answer=mcq_answer
+            data = {
+                "subject_name": Subject.objects.get(id=subject_id).name,
+                "topic_name": Topic.objects.get(id=topic_id).topic_name,
+                "mcq_name": mcq_name,
+                "mcq_a": mcq_a,
+                "mcq_b": mcq_b,
+                "mcq_c": mcq_c,
+                "mcq_d": mcq_d,
+                "mcq_answer": mcq_answer,
+                "pending": False,
+            }
+            response = client.models.generate_content(
+                model="gemini-2.0-flash",
+                contents=f"You are now an MCQ judge. judge the following mcq. if it has inappropriate content or irrelevant content, return pending to be 'True' otherwise return pending to be 'False'. Also, punctuate and fix typos in the data, additionally, if u find that the mcq is repeated, set 'repeated' to be true the mcq should be deemed repeated if both the question and the answer are similar to another mcq.\n{data}\n\n past mcqs: {list(Mcq.objects.filter(subject_id=subject_id).values())}",
+                config={
+                    "response_mime_type": "application/json",
+                    "response_schema": mcq_data,
+                },
             )
-            mcq.save()
-            return JsonResponse({"status": "success", "message": "MCQ added successfully"})
+            content = response.parsed
+            if not content.repeated:
+                mcq = Mcq.objects.create(
+                    posted_by=request.user,
+                    subject_id=subject_id,
+                    topic_id=topic_id,
+                    mcq_name=content.mcq_name,
+                    mcq_a=content.mcq_a,
+                    mcq_b=content.mcq_b,
+                    mcq_c=content.mcq_c,
+                    mcq_d=content.mcq_d,
+                    mcq_answer=content.mcq_answer,
+                    pending=content.pending
+                )
+                mcq.save()
+
+            return redirect('home')
         except Exception as e:
             return JsonResponse({"status": "error", "message": str(e)})
     else:

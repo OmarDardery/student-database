@@ -12,14 +12,6 @@
 <div id="root">
 
 </div>
-<div id="useful-links">
-    <div id="drop-down-header-link ">
-        <h3>Useful Links</h3> <button id="drop-down-useful-links"><span class='arrow'>▼</span></button>
-    </div>
-    <div id="links-container">
-
-    </div>
-</div>
 
 <div class="wrapper">
   <input type="checkbox" />
@@ -143,7 +135,8 @@
                 }
             });
         });
-        $('#root').on('click', '.drop-down-btn', function() {
+        $('#root').on('click', '.drop-down-btn', function(e) {
+            e.preventDefault();
             const btnId = $(this).attr('id');
             let target;
             if (btnId.startsWith('drop-down-sheets-')) {
@@ -154,14 +147,38 @@
                 target = btnId.replace('drop-down-', 'details-');
             }
             toggleDisplay(target);
-            $(this).children('.arrow').toggleClass('rotated');
-        });
-        $("#useful-links").hide();
 
-        $("#drop-down-useful-links").click(function() {
-            $("#links-container").toggle();
-            $(this).children('.arrow').toggleClass('rotated');
+            const arrow = $(this).find('.arrow');
+            arrow.css('transition', 'transform 0.3s');
+            const rotated = arrow.data('rotated') || false;
+            arrow.css('transform', rotated ? 'rotateZ(0deg)' : 'rotateZ(180deg)');
+            arrow.data('rotated', !rotated);
         });
+
+        $("body").append(`
+            <div id="useful-links">
+              <div class="drop-down-header">
+                <h3>Useful Links</h3>
+                <button class="drop-down-btn" id="drop-down-useful-links">
+                  <span class="arrow">▼</span>
+                </button>
+              </div>
+              <div id="links-container" style="display: none;">
+                hehe
+              </div>
+            </div>`
+            );
+
+        $('#useful-links').on('click', '.drop-down-btn', function(e) {
+            e.preventDefault();
+            $('#links-container').toggle();
+            const arrow = $(this).find('.arrow');
+            arrow.css('transition', 'transform 0.3s');
+            const rotated = arrow.data('rotated') || false;
+            arrow.css('transform', rotated ? 'rotateZ(0deg)' : 'rotateZ(180deg)');
+            arrow.data('rotated', !rotated);
+        });
+
 
     });
 </script>
