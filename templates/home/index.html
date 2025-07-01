@@ -45,6 +45,7 @@
 {{ sheets|json_script:"sheets-data" }}
 {{ notes|json_script:"notes-data" }}
 {{ semesters|json_script:"semesters-data" }}
+{{ links|json_script:"links-data" }}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -67,8 +68,8 @@
             subjects: JSON.parse(document.getElementById('subjects-data').textContent),
             sheets: JSON.parse(document.getElementById('sheets-data').textContent),
             notes: JSON.parse(document.getElementById('notes-data').textContent),
-            semesters: JSON.parse(document.getElementById('semesters-data').textContent)
-
+            semesters: JSON.parse(document.getElementById('semesters-data').textContent),
+            links: JSON.parse(document.getElementById('links-data').textContent),
         };
         function toggleDisplay(id){
             const element = document.getElementById(id);
@@ -124,7 +125,6 @@
                     $(`#sheets-details-${subject.id}`).append(sheetHtml);
                 }
             });
-            console.log(data.sheets);
             data.notes.forEach(note => {
                 if (note.subject_id === subject.id) {
                     const semester = data.semesters.find(sem => sem.id === note.semester_id);
@@ -155,7 +155,7 @@
             arrow.data('rotated', !rotated);
         });
 
-        $("body").append(`
+        $("#root").after(`
             <div id="useful-links">
               <div class="drop-down-header">
                 <h3>Useful Links</h3>
@@ -164,20 +164,46 @@
                 </button>
               </div>
               <div id="links-container" style="display: none;">
-                hehe
+
               </div>
             </div>`
             );
-
-        $('#useful-links').on('click', '.drop-down-btn', function(e) {
+        data.links.forEach(link => {
+            const linkHtml = `<div class="link-item rec-item">
+                <h2>${link.name}</h2>
+                <hr />
+                <p>${link.description}</p>
+                <button class="animated-button" onclick="window.open('${link.link}', '_blank')">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                  </svg>
+                  <span class="text">V I S I T</span>
+                  <span class="circle"></span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                  </svg>
+                </button>
+            </div>`;
+            $('#links-container').append(linkHtml);
+        });
+        $('#useful-links').on('click', '#drop-down-useful-links', function(e) {
             e.preventDefault();
-            $('#links-container').toggle();
+            const container = $('#links-container');
+            container.toggle();
+
             const arrow = $(this).find('.arrow');
             arrow.css('transition', 'transform 0.3s');
             const rotated = arrow.data('rotated') || false;
             arrow.css('transform', rotated ? 'rotateZ(0deg)' : 'rotateZ(180deg)');
             arrow.data('rotated', !rotated);
         });
+        if ({{ admin|yesno:"true,false" }}) {
+            $('#root').append(`
+                <button id="admin-btn" class="btn" onclick="location.href='/admin'">
+                    Admin
+                </button>
+            `);
+        }
 
 
     });

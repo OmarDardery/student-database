@@ -72,6 +72,7 @@ def home(request):
             "range8": range(8),
         },
         "admin": request.user.is_superuser,
+        "links": links
     }
     return render(request, 'home/index.html', data)
 
