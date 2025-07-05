@@ -19,3 +19,20 @@ admin.site.register(Topic)
 admin.site.register(Sheets)
 admin.site.register(Mcq)
 admin.site.register(Link)
+
+from django.contrib import admin
+from django.contrib.admin.models import LogEntry
+
+class LogEntryAdmin(admin.ModelAdmin):
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_bulk_delete_permission(self, request, obj=None):
+        return False
+
+try:
+    admin.site.unregister(LogEntry)
+except admin.sites.NotRegistered:
+    pass
+
+admin.site.register(LogEntry, LogEntryAdmin)

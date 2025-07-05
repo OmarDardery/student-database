@@ -173,6 +173,7 @@ async function validateCode(userCode) {
                                             <label htmlFor="password">Password:</label>
                                             <input contentEditable={"false"} value={password} name={"password"} type="text" />
                                         </div>
+                                        <h4>By signing up you accept our <a href={"/terms/"} target={"_blank"}>Terms Of Service</a></h4>
                                         <button onClick={async ()=>{
                                                 const result = await signUpUser(id, password);
                                                 if(result.completed){

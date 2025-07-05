@@ -17,9 +17,9 @@ class Student(AbstractUser):
     password = models.CharField(blank=False, validators=[MaxLengthValidator(128)])
 
     USERNAME_FIELD = 'username'
-
+    banned= models.BooleanField(default=False, help_text="Indicates whether the user is banned from the system.")
     def __str__(self):
-        return self.email
+        return self.username
     def save(self, *args, **kwargs):
         if not self.email and self.username:
             self.email = f"{self.username}@students.eui.edu.eg"
@@ -110,7 +110,13 @@ class Notes(models.Model):
 
 class Mcq(models.Model):
     id = models.AutoField(primary_key=True)
-    posted_by = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='mcqs')
+    posted_by = models.ForeignKey(
+        Student,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='mcqs'
+    )
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='mcqs')
     topic = ChainedForeignKey(
         Topic,
@@ -145,7 +151,13 @@ class Link(models.Model):
     description = models.CharField(max_length=300, blank=False, validators=[MaxLengthValidator(300)], error_messages={'blank': "This field cannot be blank."})
     link = models.TextField(blank=False)
     pending = models.BooleanField(default=True)
-
+    posted_by = models.ForeignKey(
+        Student,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='links'
+    )
     def __str__(self):
         return self.name
 

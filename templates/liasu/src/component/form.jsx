@@ -29,6 +29,7 @@ function Form(props) {
                         setPassword(e.target.value);
                     }} value={password} type="password" />
                 </div>
+                <h4>Forgot Password? Re-sign up with a new password.</h4>
                 <button onClick={async ()=>{
                     await handleSignIn()
                 }} className={"form-submit-button"}>Submit</button>

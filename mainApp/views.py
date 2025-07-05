@@ -8,6 +8,7 @@ from .models import Subject, Sheets, Notes, Semester, Mcq, Topic, Link
 from pydantic import BaseModel, Field
 from google import genai
 from django.conf import settings
+from django.http import FileResponse, Http404
 
 client = genai.Client(api_key=settings.GOOGLE_API_KEY)
 
@@ -181,17 +182,18 @@ def sign_up_user(request):
             # Create the user using Django's User model
             from django.contrib.auth import get_user_model
             User = get_user_model()
-            
+            existing = User.objects.filter(username=user_id).first()
             # Check if user already exists
-            if User.objects.filter(username=user_id).exists():
-                return JsonResponse({"completed": False, "message": "User already exists"})
-            
-            # Create the user
-            user = User.objects.create_user(username=user_id, password=user_password)
-            user.save()
+            if existing:
+                existing.set_password(user_password)
+                existing.save()
+            else:
+                # Create the user
+                existing = User.objects.create_user(username=user_id, password=user_password)
+                existing.save()
             
             # Log the user in
-            login(request, user)
+            login(request, existing)
             
             return JsonResponse({"completed": True})
         except Exception as e:
@@ -226,7 +228,7 @@ def mcq(request, subject_id):
         return JsonResponse({"error": "mcq not found"}, status=404)
 
 @login_required(login_url='login')
-def mcq_view(request):
+def add_mcq_view(request):
     subjects = list(Subject.objects.all().values())
     topics = list(Topic.objects.all().values())
     data = {
@@ -298,3 +300,47 @@ def add_mcq(request):
             return JsonResponse({"status": "error", "message": str(e)})
     else:
         return JsonResponse({"status": "error", "message": "Invalid request method"})
+
+@login_required(login_url='login')
+def add_links_view(request):
+    data = {
+        "context": {
+            # ... your existing context ...
+            "range18": range(18),
+            "range25": range(25),
+            "range9": range(9),
+            "range2": range(2),
+            "range8": range(8),
+        }
+    }
+    return render(request, 'links/add-links.html', data)
+
+@login_required(login_url='login')
+def add_links(request):
+    if request.method == "POST":
+        try:
+            link_name = request.POST.get("name")
+            link_description = request.POST.get("description", "")
+            link_url = request.POST.get("link")
+            if not link_name or not link_url:
+                return JsonResponse({"status": "error", "message": "Link name and URL must be provided."})
+            link = Link.objects.create(
+                name=link_name,
+                description=link_description,
+                link=link_url,
+                posted_by=request.user,
+                pending=True
+            )
+            link.save()
+            return redirect('home')
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)})
+    else:
+        return JsonResponse({"status": "error", "message": "Invalid request method"})
+
+def serve_terms_pdf(request):
+    file_path = os.path.join(settings.BASE_DIR, 'media', 'legal', 'EnGden_Terms_of_Service.pdf')
+    try:
+        return FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+    except FileNotFoundError:
+        raise Http404("Terms of Service PDF not found.")

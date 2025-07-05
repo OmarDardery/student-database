@@ -5,13 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd590ac8-761b-456e-a4e5-7a961b63e52d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/student-database.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/student-database.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/legal/EnGden_Terms_of_Service.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.78056de6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.78056de6.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.78056de6.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.861b3954.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.861b3954.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.861b3954.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.e1280fab.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.e1280fab.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/liasu/permenant static/static/js/main.e1280fab.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/links/add-links.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainApp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0002_student_university_id_alter_student_email_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0003_alter_student_university_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0004_remove_student_university_id_alter_student_username.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0005_alter_student_email_alter_student_password_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0006_alter_student_username.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0007_alter_student_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0008_semester_subject_topic_sheets_notes_mcq.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0009_remove_topic_semester.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0010_alter_semester_year.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0011_alter_mcq_mcq_a_alter_mcq_mcq_b_alter_mcq_mcq_c_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0012_alter_student_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0013_alter_mcq_topic_alter_notes_topic_alter_sheets_topic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0014_link_mcq_pending_alter_mcq_mcq_a_alter_mcq_mcq_b_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0015_link_pending.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0016_alter_link_pending_alter_mcq_pending.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/permenant static/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/permenant static/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/permenant static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/permenant static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/src/component/form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/component/form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liasu/src/component/signUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liasu/src/component/signUpForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +100,7 @@
     "django.template.preview.state": "SHOW_EDITOR",
     "git-widget-placeholder": "main",
     "ignore_missing_gitignore": "true",
-    "last_opened_file_path": "/home/oadardery71/Documents/GitHub/student-database",
+    "last_opened_file_path": "/home/oadardery71/Documents/GitHub/student-database/templates/liasu/permenant static",
     "list.type.of.created.stylesheet": "Sass",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -84,6 +115,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/liasu/permenant static" />
+      <recent name="$PROJECT_DIR$/media/legal" />
+      <recent name="$PROJECT_DIR$/templates/liasu/src/component" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/home/static" />
@@ -121,8 +154,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
-        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.26927.74" />
+        <option value="bundled-python-sdk-657d8234b839-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.74" />
       </set>
     </attachedChunks>
   </component>
@@ -155,7 +188,9 @@
       <workItem from="1751313134434" duration="306000" />
       <workItem from="1751320386814" duration="82000" />
       <workItem from="1751320478949" duration="35000" />
-      <workItem from="1751320522427" duration="14358000" />
+      <workItem from="1751320522427" duration="14526000" />
+      <workItem from="1751454939189" duration="24000" />
+      <workItem from="1751740107682" duration="6762000" />
     </task>
     <servers />
   </component>
