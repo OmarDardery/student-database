@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd590ac8-761b-456e-a4e5-7a961b63e52d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0002_link_posted_by_mcq_posted_by.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/migrations/0003_student_banned.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainApp/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/req.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student_database/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/student_database/settings.py" afterDir="false" />
-    </list>
+    <list default="true" id="fd590ac8-761b-456e-a4e5-7a961b63e52d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -163,7 +155,7 @@
       <workItem from="1751876553948" duration="7000" />
       <workItem from="1752052465203" duration="353000" />
       <workItem from="1752053007545" duration="134000" />
-      <workItem from="1755249577502" duration="1946000" />
+      <workItem from="1755249577502" duration="2075000" />
     </task>
     <servers />
   </component>
