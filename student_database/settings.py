@@ -81,8 +81,11 @@ WSGI_APPLICATION = 'student_database.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.parse(
+        os.getenv('DATABASE_URL')
+    )
 }
+
 
 
 # Password validation
@@ -122,7 +125,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 import os
-from dotenv import load_dotenv
 load_dotenv()
 
 STATICFILES_DIRS = [
